@@ -1,16 +1,21 @@
 package th.ac.ku.atm.service;
 
 import org.mindrot.jbcrypt.BCrypt;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 import th.ac.ku.atm.model.BankAccount;
 import th.ac.ku.atm.model.Customer;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
 public class BankAccountService {
+
     private List<BankAccount>  bankAccountsList;
     private customerService CustomerService;
     @PostConstruct
@@ -37,8 +42,8 @@ public class BankAccountService {
         for (BankAccount bankAccount : bankAccountsList) {
             if (bankAccount.getId() == id)
             {
-                bankAccountsList.remove(bankAccount);
-                return true;
+               bankAccountsList.remove(bankAccount);
+               return true;
             }
         }
         return false;
